@@ -21,7 +21,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class DummyObjectTest {
-
+   
    private DummyObject systemUnderTest;
    
    @BeforeEach
@@ -33,4 +33,5 @@ public class DummyObjectTest {
    public void shouldProvideName() {
       assertThat(systemUnderTest.getName(), equalTo("Let's get going!"));
    }
+   
 }
