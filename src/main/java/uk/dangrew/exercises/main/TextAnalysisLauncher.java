@@ -2,8 +2,10 @@
 package uk.dangrew.exercises.main;
 
 import uk.dangrew.exercises.algorithm.TextAnalyzer;
-import uk.dangrew.exercises.io.ListWordFeed;
+import uk.dangrew.exercises.io.WordFeed;
 import uk.dangrew.exercises.report.SystemOutReporter;
+
+import java.util.Optional;
 
 /**
  * Entry point to the system.
@@ -16,21 +18,14 @@ public class TextAnalysisLauncher {
     * @param args program arguments.
     */
    public static void main( String[] args ) {
-      ListWordFeed wordFeed = new ListWordFeed(
-            "Today",
-            "I",
-            "started",
-            "a",
-            "coding",
-            "exercise!",
-            "Maven",
-            "was",
-            "really",
-            "fun..."
-      );
+      Optional< WordFeed > wordFeed = new WordFeedProvider().buildWordFeed();
+      if ( !wordFeed.isPresent() ) {
+         return;
+      }
 
       TextAnalyzer textAnalyzer = new TextAnalyzer();
-      textAnalyzer.process( wordFeed );
+      textAnalyzer.process( wordFeed.get() );
       textAnalyzer.report( new SystemOutReporter() );
    }
+
 }

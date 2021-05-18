@@ -6,24 +6,26 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class FileReader implements WordFeed {
-   
-   private final String fileName;
-   private Scanner scanner;
-   
-   public FileReader(String fileName) {
-      this.fileName = fileName;
-      try {
-         this.scanner = new Scanner(new File(fileName));
-      } catch (FileNotFoundException e) {
-         e.printStackTrace();
-      }
+
+   private final Scanner scanner;
+
+   public FileReader( String fileName ) throws FileNotFoundException {
+      this( new File( fileName ) );
    }
-   
+
+   public FileReader( File file ) throws FileNotFoundException {
+      this( new Scanner( file ) );
+   }
+
+   FileReader( Scanner scanner ) {
+      this.scanner = scanner;
+   }
+
    @Override
    public boolean hasNext() {
       return scanner.hasNext();
    }
-   
+
    @Override
    public String next() {
       return scanner.next();
