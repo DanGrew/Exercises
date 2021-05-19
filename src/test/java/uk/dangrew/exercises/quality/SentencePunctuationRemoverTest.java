@@ -37,13 +37,22 @@ public class SentencePunctuationRemoverTest {
       assertThat( systemUnderTest.applyQualityMeasures( "morning:" ), equalTo( "morning" ) );
       assertThat( systemUnderTest.applyQualityMeasures( "morning;" ), equalTo( "morning" ) );
       assertThat( systemUnderTest.applyQualityMeasures( "morning?" ), equalTo( "morning" ) );
-      assertThat( systemUnderTest.applyQualityMeasures( "morning!;" ), equalTo( "morning" ) );
+      assertThat( systemUnderTest.applyQualityMeasures( "morning!" ), equalTo( "morning" ) );
+      assertThat( systemUnderTest.applyQualityMeasures( "{morning;" ), equalTo( "morning" ) );
+      assertThat( systemUnderTest.applyQualityMeasures( "morning};" ), equalTo( "morning" ) );
+      assertThat( systemUnderTest.applyQualityMeasures( "[morning;" ), equalTo( "morning" ) );
+      assertThat( systemUnderTest.applyQualityMeasures( "morning];" ), equalTo( "morning" ) );
+      assertThat( systemUnderTest.applyQualityMeasures( "(morning;" ), equalTo( "morning" ) );
+      assertThat( systemUnderTest.applyQualityMeasures( "morning);" ), equalTo( "morning" ) );
    }
 
    @Test
    public void shouldRemoveAllInstances() {
       assertThat( systemUnderTest.applyQualityMeasures( ".morning." ), equalTo( "morning" ) );
       assertThat( systemUnderTest.applyQualityMeasures( ",morning;" ), equalTo( "morning" ) );
+      assertThat( systemUnderTest.applyQualityMeasures( "{morning}" ), equalTo( "morning" ) );
+      assertThat( systemUnderTest.applyQualityMeasures( "[morning]" ), equalTo( "morning" ) );
+      assertThat( systemUnderTest.applyQualityMeasures( "(morning)" ), equalTo( "morning" ) );
    }
 
    @Test

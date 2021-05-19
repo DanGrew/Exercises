@@ -4,6 +4,9 @@ a few conventions not quite right with my quick set up that I'm unaware of. For 
 on my personal Jenkins server and it seems to have everything needed to run the test suite, so if you have 
 any problems, do let me know.
 
+I've created a basic launcher 'TextAnalysisLauncher' which should let you select a file to analyze. 
+Alternatively, you could look at the test if you want more coded control.
+
 REQUIREMENTS & DESIGN
 The exercise simply requires a 'display' of the analysis. Simple solution - System.out. However, that would
 never be used in production, so it would be one thing that definitely needed an alternative. I've opted for 
@@ -37,6 +40,7 @@ that the text has correct spelling and structure, it can be assumed correct and 
 For example, "morning." -> "morning", "1.2" -> "1.2"; "version2.1" -> "version2.1". 
 
 Extending the punctuation further, it's reasonable to expect other characters to be removed such as "?" and "!".
+Also accounted for {}, [] and ().
 Again, using the same assumption to ignore if containing numbers (expressions or notation for example).
 
 I would consider dashes/hyphens to join words into, what I'd consider is a single word for this exercise. For 

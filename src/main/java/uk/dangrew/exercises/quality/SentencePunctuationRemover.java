@@ -9,7 +9,8 @@ public class SentencePunctuationRemover implements QualityControl {
    private static final String NUMBER_REGEX = ".*\\d";
 
    private static final String PUNCTUATION_REGEX = String.join(
-         "|", "\\.", "\\,", "\\:", "\\;", "\\?", "\\!" );
+         "|", "\\.", "\\,", "\\:", "\\;", "\\?", "\\!", 
+         "\\{", "\\}", "\\[", "\\]", "\\(", "\\)" );
 
    @Override
    public String applyQualityMeasures( String input ) {
