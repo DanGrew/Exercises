@@ -39,7 +39,7 @@ public class AverageWordLengthReportTest {
    @Test
    public void shouldProvideAverageToThreedDecimalPlaces() {
       systemUnderTest = new AverageWordLengthReport( 7, 27 );
-      assertThat( systemUnderTest.getMessage(), equalTo( "Average word length = 3.857." ) );
+      assertThat( systemUnderTest.getMessage(), equalTo( "Average word length = 3.857" ) );
    }
 
 }

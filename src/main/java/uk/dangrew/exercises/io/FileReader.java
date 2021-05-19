@@ -17,7 +17,7 @@ public class FileReader implements WordFeed {
       this( new Scanner( file ) );
    }
 
-   FileReader( Scanner scanner ) {
+   public FileReader( Scanner scanner ) {
       this.scanner = scanner;
    }
 

@@ -11,13 +11,18 @@ import java.util.Objects;
 public class AverageWordLengthReport implements Report {
 
    private static final DecimalFormat RESULT_DECIMAL_FORMAT = new DecimalFormat( "#.###" );
-   private static final String MESSAGE_FORMAT = "Average word length = %s.";
+   private static final String MESSAGE_FORMAT = "Average word length = %s";
 
    private final int totalNumberOfWords;
    private final long totalWordLength;
 
    private final double averageWordLength;
 
+   /**
+    * Constructs a new {@link AverageWordLengthReport}.
+    * @param totalNumberOfWords total number of words in input text.
+    * @param totalWordLength    total word length computed from analysis.
+    */
    public AverageWordLengthReport( int totalNumberOfWords, long totalWordLength ) {
       this.totalNumberOfWords = totalNumberOfWords;
       this.totalWordLength = totalWordLength;

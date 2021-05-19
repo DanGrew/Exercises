@@ -5,26 +5,35 @@ import uk.dangrew.exercises.analysis.TextAnalysis;
 import uk.dangrew.exercises.analysis.WordCounter;
 import uk.dangrew.exercises.analysis.WordsOfLengthCounter;
 import uk.dangrew.exercises.io.WordFeed;
+import uk.dangrew.exercises.quality.QualityControl;
+import uk.dangrew.exercises.quality.SentencePunctuationRemover;
 import uk.dangrew.exercises.report.Reporter;
 
 import java.util.Collection;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.unmodifiableCollection;
 
 /**
  * Provides the core logic for analyzing words and reporting results.
  */
 public class TextAnalyzer {
 
-   private Collection< TextAnalysis > analyzers;
+   private final Collection< QualityControl > qualityControls;
+   private final Collection< TextAnalysis > analyzers;
 
    /**
     * Constructs a new {@link TextAnalyzer}.
     */
    public TextAnalyzer() {
       this(
-            new WordCounter(),
-            new WordsOfLengthCounter()
+            asList(
+                  new SentencePunctuationRemover()
+            ),
+            asList(
+                  new WordCounter(),
+                  new WordsOfLengthCounter()
+            )
       );
    }
 
@@ -32,8 +41,12 @@ public class TextAnalyzer {
     * Constructs a new {@link TextAnalyzer}.
     * @param analyzers the different types of {@link TextAnalysis} that should be performed.
     */
-   TextAnalyzer( TextAnalysis... analyzers ) {
-      this.analyzers = asList( analyzers );
+   TextAnalyzer(
+         Collection< QualityControl > qualityControls,
+         Collection< TextAnalysis > analyzers
+   ) {
+      this.qualityControls = unmodifiableCollection( qualityControls );
+      this.analyzers = unmodifiableCollection( analyzers );
    }
 
    /**
@@ -43,6 +56,10 @@ public class TextAnalyzer {
    public void process( WordFeed wordFeed ) {
       while ( wordFeed.hasNext() ) {
          String word = wordFeed.next();
+
+         for ( QualityControl qualityControl : qualityControls ) {
+            word = qualityControl.applyQualityMeasures( word );
+         }
          analyze( word );
       }
    }

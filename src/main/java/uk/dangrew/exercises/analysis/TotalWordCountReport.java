@@ -11,7 +11,7 @@ import java.util.Objects;
  */
 public class TotalWordCountReport implements Report {
 
-   private static final String MESSAGE_FORMAT = "Word count = %d.";
+   private static final String MESSAGE_FORMAT = "Word count = %d";
 
    private final int totalNumberOfWords;
 
