@@ -10,36 +10,18 @@ import java.util.Objects;
  */
 public class AverageWordLengthReport implements Report {
 
+   private static final double DECIMAL_PLACE_ACCURACY = 0.001;
    private static final DecimalFormat RESULT_DECIMAL_FORMAT = new DecimalFormat( "#.###" );
    private static final String MESSAGE_FORMAT = "Average word length = %s";
-
-   private final int totalNumberOfWords;
-   private final long totalWordLength;
 
    private final double averageWordLength;
 
    /**
     * Constructs a new {@link AverageWordLengthReport}.
-    * @param totalNumberOfWords total number of words in input text.
-    * @param totalWordLength    total word length computed from analysis.
+    * @param averageWordLength the average word length.
     */
-   public AverageWordLengthReport( int totalNumberOfWords, long totalWordLength ) {
-      this.totalNumberOfWords = totalNumberOfWords;
-      this.totalWordLength = totalWordLength;
-
-      if ( totalNumberOfWords == 0.0 ) {
-         this.averageWordLength = 0.0;
-      } else {
-         this.averageWordLength = 1.0 * totalWordLength / totalNumberOfWords;
-      }
-   }
-
-   /**
-    * Access to the exact calculated average.
-    * @return the value.
-    */
-   public double getCalculatedAverage() {
-      return averageWordLength;
+   public AverageWordLengthReport( double averageWordLength ) {
+      this.averageWordLength = averageWordLength;
    }
 
    @Override
@@ -56,12 +38,21 @@ public class AverageWordLengthReport implements Report {
          return false;
       }
       AverageWordLengthReport that = ( AverageWordLengthReport ) o;
-      return totalNumberOfWords == that.totalNumberOfWords &&
-            totalWordLength == that.totalWordLength;
+      return doubleEquals( that.averageWordLength, averageWordLength );
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash( totalNumberOfWords, totalWordLength );
+      return Objects.hash( averageWordLength );
+   }
+
+   /**
+    * Custom double equals just for the purposes of displaying the result.
+    * @param first  to compare.
+    * @param second to compare.
+    * @return if they are equal given {@link #DECIMAL_PLACE_ACCURACY} as an error.
+    */
+   private static boolean doubleEquals( double first, double second ) {
+      return Math.abs( first - second ) < DECIMAL_PLACE_ACCURACY;
    }
 }

@@ -70,7 +70,7 @@ public class WordCounterTest {
       systemUnderTest.analyze( "anything" );
       systemUnderTest.report( reporter );
 
-      verify( reporter ).report( new AverageWordLengthReport( 1, 8 ) );
+      verify( reporter ).report( new AverageWordLengthReport( 8.0 / 1 ) );
    }
 
    @Test
@@ -78,7 +78,7 @@ public class WordCounterTest {
       sampleWords.forEach( systemUnderTest::analyze );
       systemUnderTest.report( reporter );
 
-      verify( reporter ).report( new AverageWordLengthReport( 6, 27 ) );
+      verify( reporter ).report( new AverageWordLengthReport( 27.0 / 6 ) );
    }
 
 }

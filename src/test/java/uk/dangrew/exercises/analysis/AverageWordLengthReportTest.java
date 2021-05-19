@@ -17,29 +17,29 @@ package uk.dangrew.exercises.analysis;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.closeTo;
 
 public class AverageWordLengthReportTest {
 
    private AverageWordLengthReport systemUnderTest;
 
-   @Test
-   public void shouldProvideAverageWithDoublePrecision() {
-      systemUnderTest = new AverageWordLengthReport( 2, 5 );
-      assertThat( systemUnderTest.getCalculatedAverage(), closeTo( 2.5, 0.1 ) );
-   }
 
    @Test
-   public void shouldDefendAgainstNoWordsBeingProcessed() {
-      systemUnderTest = new AverageWordLengthReport( 0, 100 );
-      assertThat( systemUnderTest.getCalculatedAverage(), closeTo( 0, 0.1 ) );
-   }
-
-   @Test
-   public void shouldProvideAverageToThreedDecimalPlaces() {
-      systemUnderTest = new AverageWordLengthReport( 7, 27 );
+   public void shouldProvideAverageToThreeDecimalPlaces() {
+      systemUnderTest = new AverageWordLengthReport( 3.857 );
       assertThat( systemUnderTest.getMessage(), equalTo( "Average word length = 3.857" ) );
    }
 
+   @Test
+   public void shouldBeEqualToThreeDecimalPlaces() {
+      assertThat( new AverageWordLengthReport( 3.857 ),
+            equalTo( new AverageWordLengthReport( 3.857 ) ) );
+      
+      assertThat( new AverageWordLengthReport( 3.856 ),
+            not(equalTo( new AverageWordLengthReport( 3.857 ) ) ));
+      
+      assertThat( new AverageWordLengthReport( 3.8571 ),
+            equalTo( new AverageWordLengthReport( 3.8572 ) ) );
+   }
 }
