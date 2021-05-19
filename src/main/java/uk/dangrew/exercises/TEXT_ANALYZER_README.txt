@@ -36,6 +36,12 @@ not for numbers. Simple cases - words only, remove; numbers only, don't. For a m
 that the text has correct spelling and structure, it can be assumed correct and therefore left unchanged.
 For example, "morning." -> "morning", "1.2" -> "1.2"; "version2.1" -> "version2.1". 
 
+Extending the punctuation further, it's reasonable to expect other characters to be removed such as "?" and "!".
+Again, using the same assumption to ignore if containing numbers (expressions or notation for example).
+
+I would consider dashes/hyphens to join words into, what I'd consider is a single word for this exercise. For 
+example non-compliant.
+
 TESTING
 Some objects are simple. I could test them. It's a question of value for the time it takes, 
 and focus on the important aspects of the code. I've omitted some tests based on this.

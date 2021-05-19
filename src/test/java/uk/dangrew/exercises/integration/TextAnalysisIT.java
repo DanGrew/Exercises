@@ -49,27 +49,27 @@ public class TextAnalysisIT {
       systemUnderTest.report( new SystemOutReporter() );
 
       assertThat( reporter.getResult(), equalTo(
-            "Word count = 793826" +
-                  "Average word length = 4.092" +
-                  "Number of words of length 1 is 18635" +
-                  "Number of words of length 2 is 131459" +
-                  "Number of words of length 3 is 221129" +
-                  "Number of words of length 4 is 174918" +
-                  "Number of words of length 5 is 95992" +
-                  "Number of words of length 6 is 53115" +
-                  "Number of words of length 7 is 41627" +
-                  "Number of words of length 8 is 25407" +
-                  "Number of words of length 9 is 16908" +
-                  "Number of words of length 10 is 7616" +
-                  "Number of words of length 11 is 3920" +
-                  "Number of words of length 12 is 1735" +
-                  "Number of words of length 13 is 886" +
-                  "Number of words of length 14 is 360" +
-                  "Number of words of length 15 is 95" +
-                  "Number of words of length 16 is 17" +
+                  "Word count = 793824" +
+                  "Average word length = 4.088" +
+                  "Number of words of length 1 is 18639" +
+                  "Number of words of length 2 is 131843" +
+                  "Number of words of length 3 is 221259" +
+                  "Number of words of length 4 is 175379" +
+                  "Number of words of length 5 is 95573" +
+                  "Number of words of length 6 is 52967" +
+                  "Number of words of length 7 is 41493" +
+                  "Number of words of length 8 is 25312" +
+                  "Number of words of length 9 is 16852" +
+                  "Number of words of length 10 is 7559" +
+                  "Number of words of length 11 is 3884" +
+                  "Number of words of length 12 is 1718" +
+                  "Number of words of length 13 is 876" +
+                  "Number of words of length 14 is 355" +
+                  "Number of words of length 15 is 92" +
+                  "Number of words of length 16 is 16" +
                   "Number of words of length 17 is 5" +
                   "Number of words of length 18 is 2" +
-                  "The most frequently occurring word length is 221129, for word lengths of 3"
+                  "The most frequently occurring word length is 221259, for word lengths of 3"
       ) );
    }
 

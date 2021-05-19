@@ -83,15 +83,41 @@ public class TextAnalysisE2ETest {
 
       assertThat( reporter.getResult(), equalTo(
             "Word count = 10" +
-                  "Average word length = 4.6" +
+                  "Average word length = 4.5" +
                   "Number of words of length 1 is 2" +
                   "Number of words of length 3 is 2" +
                   "Number of words of length 5 is 2" +
                   "Number of words of length 6 is 2" +
                   "Number of words of length 7 is 1" +
-                  "Number of words of length 9 is 1" +
+                  "Number of words of length 8 is 1" +
                   "The most frequently occurring word length is 2," +
                   " for word lengths of 1 & 3 & 5 & 6" ) );
+   }
+
+   @Test
+   public void shouldRemoveEmptyStringsOrPunctuationOnlyString() {
+      ListWordFeed wordFeed = new ListWordFeed(
+            "Something",
+            "...",
+            " to ",
+            ", ,",
+            "       think ",
+            "about...",
+            " . "
+      );
+
+      systemUnderTest.process( wordFeed );
+      systemUnderTest.report( reporter );
+      systemUnderTest.report( new SystemOutReporter() );
+
+      assertThat( reporter.getResult(), equalTo(
+            "Word count = 4" +
+                  "Average word length = 5.25" +
+                  "Number of words of length 2 is 1" +
+                  "Number of words of length 5 is 2" +
+                  "Number of words of length 9 is 1" +
+                  "The most frequently occurring word length is 2, for word lengths of 5"
+      ) );
    }
 
 }

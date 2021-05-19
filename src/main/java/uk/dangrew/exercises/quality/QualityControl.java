@@ -7,7 +7,7 @@ package uk.dangrew.exercises.quality;
 public interface QualityControl {
 
    /**
-    * Applies the associated quality control to the given input, returning a version that
+    * Applies the associated quality control to the given input, returning a version that 
     * complies with this control.
     * @param input to quality control.
     * @return the quality controlled version of the input.

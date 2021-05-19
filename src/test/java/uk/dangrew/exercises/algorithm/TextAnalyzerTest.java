@@ -85,12 +85,25 @@ public class TextAnalyzerTest {
       String input = "anything";
       String firstQualityAnswer = "decent-quality";
       String secondQualityAnswer = "best-quality";
-      
+
       when( qualityControl1.applyQualityMeasures( input ) ).thenReturn( firstQualityAnswer );
       when( qualityControl2.applyQualityMeasures( firstQualityAnswer ) ).thenReturn( secondQualityAnswer );
 
       systemUnderTest.process( new ListWordFeed( input ) );
       verify( analyzer1 ).analyze( secondQualityAnswer );
       verify( analyzer2 ).analyze( secondQualityAnswer );
+   }
+
+   @Test
+   public void shouldExpectAndSupportQualityControlledStringsBeingRemoved() {
+      String input = "anything";
+      String firstQualityAnswer = "decent-quality";
+
+      when( qualityControl1.applyQualityMeasures( input ) ).thenReturn( firstQualityAnswer );
+      when( qualityControl2.applyQualityMeasures( firstQualityAnswer ) ).thenReturn( null );
+
+      systemUnderTest.process( new ListWordFeed( input ) );
+      verify( analyzer1, never() ).analyze( anyString() );
+      verify( analyzer2, never() ).analyze( anyString() );
    }
 }

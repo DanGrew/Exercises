@@ -5,11 +5,13 @@ import uk.dangrew.exercises.analysis.TextAnalysis;
 import uk.dangrew.exercises.analysis.WordCounter;
 import uk.dangrew.exercises.analysis.WordsOfLengthCounter;
 import uk.dangrew.exercises.io.WordFeed;
+import uk.dangrew.exercises.quality.EmptyStringRemover;
 import uk.dangrew.exercises.quality.QualityControl;
 import uk.dangrew.exercises.quality.SentencePunctuationRemover;
 import uk.dangrew.exercises.report.Reporter;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableCollection;
@@ -28,7 +30,8 @@ public class TextAnalyzer {
    public TextAnalyzer() {
       this(
             asList(
-                  new SentencePunctuationRemover()
+                  new SentencePunctuationRemover(),
+                  new EmptyStringRemover()
             ),
             asList(
                   new WordCounter(),
@@ -60,7 +63,7 @@ public class TextAnalyzer {
          for ( QualityControl qualityControl : qualityControls ) {
             word = qualityControl.applyQualityMeasures( word );
          }
-         analyze( word );
+         Optional.ofNullable( word ).ifPresent( this::analyze );
       }
    }
 

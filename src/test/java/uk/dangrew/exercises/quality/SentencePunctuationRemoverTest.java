@@ -18,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SentencePunctuationRemoverTest {
@@ -35,6 +36,8 @@ public class SentencePunctuationRemoverTest {
       assertThat( systemUnderTest.applyQualityMeasures( "morning," ), equalTo( "morning" ) );
       assertThat( systemUnderTest.applyQualityMeasures( "morning:" ), equalTo( "morning" ) );
       assertThat( systemUnderTest.applyQualityMeasures( "morning;" ), equalTo( "morning" ) );
+      assertThat( systemUnderTest.applyQualityMeasures( "morning?" ), equalTo( "morning" ) );
+      assertThat( systemUnderTest.applyQualityMeasures( "morning!;" ), equalTo( "morning" ) );
    }
 
    @Test
@@ -47,5 +50,10 @@ public class SentencePunctuationRemoverTest {
    public void shouldNotRemovePunctuationIfContainsNumbers() {
       assertThat( systemUnderTest.applyQualityMeasures( "2.1" ), equalTo( "2.1" ) );
       assertThat( systemUnderTest.applyQualityMeasures( "version2.14" ), equalTo( "version2.14" ) );
+   }
+
+   @Test
+   public void shouldSupportNullInput() {
+      assertThat( systemUnderTest.applyQualityMeasures( null ), nullValue() );
    }
 }
