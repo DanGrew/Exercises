@@ -20,6 +20,7 @@ import uk.dangrew.exercises.algorithm.TextAnalyzer;
 import uk.dangrew.exercises.io.FileReader;
 import uk.dangrew.exercises.io.WordFeed;
 import uk.dangrew.exercises.report.StringBuilderReporter;
+import uk.dangrew.exercises.report.SystemOutReporter;
 
 import java.io.FileNotFoundException;
 
@@ -45,6 +46,7 @@ public class TextAnalysisIT {
 
       systemUnderTest.process( wordFeed );
       systemUnderTest.report( reporter );
+      systemUnderTest.report( new SystemOutReporter() );
 
       assertThat( reporter.getResult(), equalTo(
             "Word count = 793826." +

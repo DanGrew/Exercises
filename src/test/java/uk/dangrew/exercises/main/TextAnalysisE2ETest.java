@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import uk.dangrew.exercises.algorithm.TextAnalyzer;
 import uk.dangrew.exercises.io.ListWordFeed;
 import uk.dangrew.exercises.report.StringBuilderReporter;
+import uk.dangrew.exercises.report.SystemOutReporter;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -51,6 +52,7 @@ public class TextAnalysisE2ETest {
 
       systemUnderTest.process( wordFeed );
       systemUnderTest.report( reporter );
+      systemUnderTest.report( new SystemOutReporter() );
 
       assertThat( reporter.getResult(), equalTo(
             "Word count = 10." +

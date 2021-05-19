@@ -3,6 +3,7 @@ package uk.dangrew.exercises.algorithm;
 
 import uk.dangrew.exercises.analysis.TextAnalysis;
 import uk.dangrew.exercises.analysis.WordCounter;
+import uk.dangrew.exercises.analysis.WordsOfLengthCounter;
 import uk.dangrew.exercises.io.WordFeed;
 import uk.dangrew.exercises.report.Reporter;
 
@@ -21,7 +22,10 @@ public class TextAnalyzer {
     * Constructs a new {@link TextAnalyzer}.
     */
    public TextAnalyzer() {
-      this( new WordCounter() );
+      this(
+            new WordCounter(),
+            new WordsOfLengthCounter()
+      );
    }
 
    /**
