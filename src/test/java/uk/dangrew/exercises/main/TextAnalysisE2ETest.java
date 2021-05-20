@@ -120,4 +120,29 @@ public class TextAnalysisE2ETest {
       ) );
    }
 
+   @Test
+   public void shouldRemoveSpeechMarks() {
+      ListWordFeed wordFeed = new ListWordFeed(
+            "He",
+            "said",
+            "\"I've",
+            "had",
+            "enough!\""
+      );
+
+      systemUnderTest.process( wordFeed );
+      systemUnderTest.report( reporter );
+      systemUnderTest.report( new SystemOutReporter() );
+
+      assertThat( reporter.getResult(), equalTo(
+            "Word count = 5" +
+                  "Average word length = 3.8" +
+                  "Number of words of length 2 is 1" +
+                  "Number of words of length 3 is 1" +
+                  "Number of words of length 4 is 2" +
+                  "Number of words of length 6 is 1" +
+                  "The most frequently occurring word length is 2, for word lengths of 4"
+      ) );
+   }
+
 }

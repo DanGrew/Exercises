@@ -65,7 +65,7 @@ and focus on the important aspects of the code. I've omitted some test cases bas
 
 I've used 2 styles of integration test. The first is an "end to end" style ("E2E") which is used to test the 
 start of a process (or sequence of steps) through to a later or last step. This test isn't concerned with
-the source of the output and is simply trying to put realistic cases through that process. Not present here,
+the source of the input and is simply trying to put realistic cases through that process. Not present here,
 but I would consider stubbing in this sort of test to focus on the sequence of steps the test wants to prove.
 
 The other integration test is a fuller test, exercising the entire system. At this scale of exercise, 

@@ -46,8 +46,12 @@ public class SentencePunctuationRemoverTest {
       assertThat( systemUnderTest.applyQualityMeasures( "morning)" ), equalTo( "morning" ) );
       assertThat( systemUnderTest.applyQualityMeasures( "<morning" ), equalTo( "morning" ) );
       assertThat( systemUnderTest.applyQualityMeasures( "morning>" ), equalTo( "morning" ) );
-      assertThat( systemUnderTest.applyQualityMeasures( "****morning****" ),
-            equalTo( "morning" ) );
+      assertThat( systemUnderTest.applyQualityMeasures( "morning\"" ), equalTo( "morning" ) );
+      assertThat( systemUnderTest.applyQualityMeasures( "\"morning>" ), equalTo( "morning" ) );
+      assertThat(
+            systemUnderTest.applyQualityMeasures( "****morning****" ),
+            equalTo( "morning" )
+      );
       assertThat( systemUnderTest.applyQualityMeasures( "****" ), equalTo( "" ) );
    }
 
@@ -59,6 +63,7 @@ public class SentencePunctuationRemoverTest {
       assertThat( systemUnderTest.applyQualityMeasures( "[morning]" ), equalTo( "morning" ) );
       assertThat( systemUnderTest.applyQualityMeasures( "(morning)" ), equalTo( "morning" ) );
       assertThat( systemUnderTest.applyQualityMeasures( "<morning>" ), equalTo( "morning" ) );
+      assertThat( systemUnderTest.applyQualityMeasures( "\"morning\"" ), equalTo( "morning" ) );
    }
 
    @Test
