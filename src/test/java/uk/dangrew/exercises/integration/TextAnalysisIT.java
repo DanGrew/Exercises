@@ -49,15 +49,15 @@ public class TextAnalysisIT {
       systemUnderTest.report( new SystemOutReporter() );
 
       assertThat( reporter.getResult(), equalTo(
-            "Word count = 793824" +
-                  "Average word length = 4.087" +
+            "Word count = 793094" +
+                  "Average word length = 4.085" +
                   "Number of words of length 1 is 18647" +
                   "Number of words of length 2 is 131867" +
                   "Number of words of length 3 is 221381" +
                   "Number of words of length 4 is 175280" +
                   "Number of words of length 5 is 95578" +
                   "Number of words of length 6 is 52949" +
-                  "Number of words of length 7 is 41486" +
+                  "Number of words of length 7 is 40756" +
                   "Number of words of length 8 is 25299" +
                   "Number of words of length 9 is 16842" +
                   "Number of words of length 10 is 7554" +

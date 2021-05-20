@@ -19,7 +19,8 @@ public class TextAnalysisLauncher {
     */
    public static void main( String[] args ) {
       Optional< WordFeed > wordFeed = new WordFeedProvider().buildWordFeed();
-      if ( !wordFeed.isPresent() ) {
+      if ( !wordFeed.isPresent() || !wordFeed.get().hasNext() ) {
+         System.out.println( "Unable to read selected file. Aborting analysis." );
          return;
       }
 
